@@ -9,6 +9,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'cdn.apna.co',
+      },
+      {
+        protocol: 'https',
         hostname: 'developer.apple.com',
       },
       {

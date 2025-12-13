@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import ConditionalNavbar from '@/components/common/ConditionalNavbar'
-import Footer from '@/components/common/Footer'
+import ConditionalFooter from '@/components/common/ConditionalFooter'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ConditionalNavbar />
         <main>{children}</main>
-        <Footer />
+        <ConditionalFooter />
       </body>
     </html>
   )

@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../globals.css'
-import EmployerNavbar from '@/components/employer/EmployerNavbar'
-import Footer from '@/components/common/Footer'
+import Navbar from '@/components/common/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +17,8 @@ export default function EmployerLayout({
 }) {
   return (
     <>
-      <EmployerNavbar />
+      <Navbar variant="employer" />
       <main>{children}</main>
-      <Footer />
     </>
   )
 }

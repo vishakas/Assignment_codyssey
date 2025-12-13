@@ -7,6 +7,8 @@ import PopularSearches from '@/components/home/PopularSearches'
 import TopCompanies from '@/components/home/TopCompanies'
 import CommunitySection from '@/components/home/CommunitySection'
 import AppDownloadWidget from '@/components/home/AppDownloadWidget'
+import DownloadApnaApp from '@/components/home/DownloadApnaApp'
+import HireCTASection from '@/components/home/HireCTASection'
 import JobDirectory from '@/components/home/JobDirectory'
 
 export default function HomePage() {
@@ -20,6 +22,8 @@ export default function HomePage() {
       <TopCompanies />
       <CommunitySection />
       <AppDownloadWidget />
+      <DownloadApnaApp />
+      <HireCTASection />
       <JobDirectory />
     </>
   )
