@@ -18,7 +18,7 @@ export default function EmployerLayout({
   return (
     <>
       <Navbar variant="employer" />
-      <main>{children}</main>
+      {children}
     </>
   )
 }

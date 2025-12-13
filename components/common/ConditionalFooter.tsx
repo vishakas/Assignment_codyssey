@@ -2,13 +2,14 @@
 
 import { usePathname } from 'next/navigation'
 import Footer from './Footer'
+import EmployerFooter from '@/components/employer/EmployerFooter'
 
 export default function ConditionalFooter() {
   const pathname = usePathname()
   
-  // Don't show footer on employer routes
+  // Show employer footer on employer routes
   if (pathname?.startsWith('/employer')) {
-    return null
+    return <EmployerFooter />
   }
   
   return <Footer />
