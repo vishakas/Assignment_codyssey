@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import ApnaLogo from '@/components/common/ApnaLogo'
 
 export default function EmployerNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -12,10 +13,7 @@ export default function EmployerNavbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/employer" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded flex items-center justify-center">
-                <span className="text-white font-bold text-sm">a</span>
-              </div>
-              <span className="text-xl font-bold text-gray-900 lowercase">apna</span>
+              <ApnaLogo width={32} height={32} />
             </Link>
           </div>
 

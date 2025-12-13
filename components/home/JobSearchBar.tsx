@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import Button from '@/components/ui/Button'
 
 export default function JobSearchBar() {
   const [jobQuery, setJobQuery] = useState('')
@@ -10,8 +9,9 @@ export default function JobSearchBar() {
 
   return (
     <div className="container-custom -mt-8 lg:-mt-12 relative z-10">
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 md:p-6 relative">
+      <div className="bg-white rounded-[12px] shadow-[0px_2px_6px_rgba(0,0,0,0.06)] border border-gray-200 p-5 md:p-6 relative">
         <div className="grid md:grid-cols-4 gap-4 md:pr-40">
+          {/* Search Field */}
           <div className="md:col-span-2">
             <div className="relative">
               <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
@@ -24,11 +24,12 @@ export default function JobSearchBar() {
                 placeholder="Search jobs by skill, company..."
                 value={jobQuery}
                 onChange={(e) => setJobQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-[14px] font-medium"
               />
             </div>
           </div>
           
+          {/* Experience Dropdown */}
           <div className="relative">
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,7 +39,7 @@ export default function JobSearchBar() {
             <select
               value={experience}
               onChange={(e) => setExperience(e.target.value)}
-              className="w-full pl-10 pr-8 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 appearance-none bg-white"
+              className="w-full pl-10 pr-8 py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 appearance-none bg-white text-[14px] font-medium"
             >
               <option value="">Your Experience</option>
               <option value="fresher">Fresher</option>
@@ -54,6 +55,7 @@ export default function JobSearchBar() {
             </div>
           </div>
 
+          {/* Location Field */}
           <div className="relative">
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -66,18 +68,20 @@ export default function JobSearchBar() {
               placeholder="Search for area or city..."
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-[14px] font-medium"
             />
           </div>
         </div>
         
+        {/* Search Button */}
         <div className="mt-4 md:mt-0 md:absolute md:right-6 md:top-1/2 md:transform md:-translate-y-1/2">
-          <Button variant="primary" size="lg" className="w-full md:w-auto">
+          <button 
+            className="bg-[#137A6A] text-white hover:bg-[#116B5C] font-semibold text-sm px-6 py-3 rounded-[4px] transition-colors w-full md:w-auto"
+          >
             Search jobs
-          </Button>
+          </button>
         </div>
       </div>
     </div>
   )
 }
-

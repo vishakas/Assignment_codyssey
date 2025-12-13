@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useState, useEffect } from 'react'
 import Card from '@/components/ui/Card'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
@@ -33,9 +35,65 @@ const companies: Company[] = [
     logo: 'ZO',
     logoBg: 'bg-red-100',
   },
+  {
+    id: '4',
+    name: 'Swiggy',
+    description: 'Online food ordering and delivery platform.',
+    logo: 'SW',
+    logoBg: 'bg-orange-100',
+  },
+  {
+    id: '5',
+    name: 'Uber',
+    description: 'Ride-sharing and food delivery service.',
+    logo: 'UB',
+    logoBg: 'bg-black text-white',
+  },
+  {
+    id: '6',
+    name: 'Urban Company',
+    description: 'Home services marketplace.',
+    logo: 'UC',
+    logoBg: 'bg-purple-100',
+  },
+  {
+    id: '7',
+    name: 'Fidelity',
+    description: 'Financial services and investment management.',
+    logo: 'FD',
+    logoBg: 'bg-blue-100',
+  },
 ]
 
 export default function TopCompanies() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const [itemsToShow, setItemsToShow] = useState(5)
+
+  useEffect(() => {
+    const updateItemsToShow = () => {
+      if (window.innerWidth >= 1024) setItemsToShow(5) // desktop
+      else if (window.innerWidth >= 768) setItemsToShow(3) // tablet
+      else setItemsToShow(2) // mobile
+    }
+    
+    updateItemsToShow()
+    window.addEventListener('resize', updateItemsToShow)
+    return () => window.removeEventListener('resize', updateItemsToShow)
+  }, [])
+
+  useEffect(() => {
+    if (isPaused || companies.length <= itemsToShow) return
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % (companies.length - itemsToShow + 1))
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [isPaused, itemsToShow])
+
+  const visibleCompanies = companies.slice(currentIndex, currentIndex + itemsToShow)
+
   return (
     <section className="py-12 lg:py-16 bg-white">
       <div className="container-custom">
@@ -43,27 +101,36 @@ export default function TopCompanies() {
           Job Openings in Top companies
         </h2>
         
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {companies.map((company) => (
-            <Card key={company.id} hover>
-              <div className="flex items-center mb-4">
-                <div className={`${company.logoBg} w-12 h-12 rounded-full flex items-center justify-center mr-4`}>
-                  <span className="font-bold text-gray-700">{company.logo}</span>
+        <div 
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8 overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {visibleCompanies.map((company, index) => (
+            <div 
+              key={`${company.id}-${currentIndex}-${index}`}
+              className="transition-opacity duration-500"
+            >
+              <Card hover>
+                <div className="flex items-center mb-4">
+                  <div className={`${company.logoBg} w-12 h-12 rounded-full flex items-center justify-center mr-4`}>
+                    <span className="font-bold text-gray-700">{company.logo}</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 text-sm">{company.name}</h3>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-gray-900">{company.name}</h3>
-                </div>
-              </div>
-              <p className="text-gray-600 mb-4 text-sm">{company.description}</p>
-              <Link href={`/companies/${company.id}`}>
-                <span className="text-primary-600 font-medium hover:text-primary-700 inline-flex items-center">
-                  View jobs
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </Link>
-            </Card>
+                <p className="text-gray-600 mb-4 text-sm">{company.description}</p>
+                <Link href={`/companies/${company.id}`}>
+                  <span className="text-primary-600 font-medium hover:text-primary-700 inline-flex items-center">
+                    View jobs
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </Link>
+              </Card>
+            </div>
           ))}
         </div>
 
@@ -84,5 +151,3 @@ export default function TopCompanies() {
     </section>
   )
 }
-
-
