@@ -4,6 +4,7 @@ import JobPrepBanner from '@/components/home/JobPrepBanner'
 import JobPrepSection from '@/components/home/JobPrepSection'
 import TrendingJobRoles from '@/components/home/TrendingJobRoles'
 import PopularSearches from '@/components/home/PopularSearches'
+import TopCompanyOpenings from '@/components/home/TopCompanyOpenings'
 import TopCompanies from '@/components/home/TopCompanies'
 import CommunitySection from '@/components/home/CommunitySection'
 import AppDownloadWidget from '@/components/home/AppDownloadWidget'
@@ -18,6 +19,7 @@ export default function HomePage() {
       <HeroSection />
       <JobPrepSection />
       <PopularSearches />
+      <TopCompanyOpenings />
       <TrendingJobRoles />
       <TopCompanies />
       <CommunitySection />
