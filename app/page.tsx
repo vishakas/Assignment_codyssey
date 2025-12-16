@@ -25,7 +25,7 @@ export default function HomePage() {
       <CommunitySection />
       <AppDownloadWidget />
       <DownloadApnaApp />
-      <HireCTASection />
+      {/* <HireCTASection /> */}
       <JobDirectory />
     </>
   )
